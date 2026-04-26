@@ -543,10 +543,13 @@ sensor:
         - delta: 1
     lambda: |-
       float soc = round(id(${yambms_id}_state_of_charge).state);
-      if (id(${yambms_id}_bms_combined).state == 0) return 0;         // no BMS combined => sending 0%
-      else if (soc < 99) return soc;                                  // SoC < 99% => sending SoC
-      else if (id(${yambms_id}_eoc) == true) return soc;              // End Of Charge => sending SoC
-      else return 98;                                                 // Otherwise => sending 98%
+      if (id(${yambms_id}_bms_combined).state == 0) return 0;   // no BMS
+      // Nếu đúng 100% → giữ nguyên
+      else if (soc >= 100) return 100;
+      // Nếu >95 và <100 → ép về 95
+      else if (soc > 95) return 95;
+      // Còn lại ≤95 → giữ nguyên
+      else return soc;                                                 // Otherwise => sending 98%
                                                                       // Useful for some inverters stopping charging when SoC reaches 100%
 
   # +--------------------------------------+
