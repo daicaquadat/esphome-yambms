@@ -549,8 +549,7 @@ sensor:
       // Nếu >95 và <100 → ép về 95
       else if (soc > 95) return 95;
       // Còn lại ≤95 → giữ nguyên
-      else return soc;                                                 // Otherwise => sending 98%
-                                                                      // Useful for some inverters stopping charging when SoC reaches 100%
+      else return soc;
 
   # +--------------------------------------+
   # | Cell Count                           |
