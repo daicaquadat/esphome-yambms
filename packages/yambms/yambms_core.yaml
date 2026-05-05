@@ -545,9 +545,9 @@ sensor:
       float soc = round(id(${yambms_id}_state_of_charge).state);
       if (id(${yambms_id}_bms_combined).state == 0) return 0;   // giữ nguyên
       // SOC bình thường
-      else if (soc <= 95) return soc;
-      // SOC từ 96–99 → ép về 95
-      else if (soc < 100) return 95;
+      else if (soc <= 96) return soc;
+      // SOC từ 97–99 → ép về 96
+      else if (soc < 100) return 96;
       // SOC = 100 → giữ nguyên (EOC vẫn hoạt động)
       else return soc;
 
