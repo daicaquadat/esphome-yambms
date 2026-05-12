@@ -549,7 +549,7 @@ sensor:
       // SOC từ 96–99 → ép về 95
       else if (soc < 100) return 95;
       // SOC = 100 → giữ nguyên (EOC vẫn hoạt động)
-      else return soc;
+      else return 99; //soc;
 
   # +--------------------------------------+
   # | Cell Count                           |
